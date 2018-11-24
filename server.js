@@ -4,11 +4,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 // body-parser info at https://www.npmjs.com/package/body-parser
 const bodyParser = require('body-parser');
+// passport info at https://www.npmjs.com/package/passport
+const passport = require('passport');
 
+// importing routes
 const users = require('./routes/api/users');
 const profiles = require('./routes/api/profiles');
 const posts = require('./routes/api/posts');
 
+// Create new express app
 const app = express();
 
 // Body Parser middleware
@@ -20,16 +24,20 @@ app.use(bodyParser.json());
 // DB Config
 const db = require('./config/keys').mongoURI;
 
-// Connect to MongoDB (at mLab)
+// Connect to MongoDB (at mLab) using mongoose
 mongoose
 	.connect(db)
 	.then(() => console.log('MongoDB Connected'))
 	.catch(err => console.log(err));
 
-app.get('/', (req, res) => res.send('Hello'));
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Use Routes
-//app.use requires middleware function
+//app.use requires middleware function in route file
 app.use('/api/users', users);
 app.use('/api/profiles', profiles);
 app.use('/api/posts', posts);

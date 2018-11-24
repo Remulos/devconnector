@@ -38,9 +38,9 @@ require('./config/passport')(passport);
 
 // Use Routes
 //app.use requires middleware function in route file
-app.use('/api/users', users);
-app.use('/api/profiles', profiles);
-app.use('/api/posts', posts);
+app.use('/users', users);
+app.use('/profile', profiles);
+app.use('/posts', posts);
 
 const port = process.env.PORT || 5000;
 

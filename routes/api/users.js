@@ -9,19 +9,19 @@ const jwt = require('jsonwebtoken');
 // passport info at https://www.npmjs.com/package/passport
 const passport = require('passport');
 
-// Load User model
+// Load User model to use in mongoose
 const User = require('../../models/User');
 
 // Load input validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
-// @route   GET api/users/test
+// @route   GET users/test
 // @desc    Tests users route
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'user works' }));
 
-// @route   GET api/users/register
+// @route   GET users/register
 // @desc    Register user
 // @access  Public
 router.post('/register', (req, res) => {
@@ -67,7 +67,7 @@ router.post('/register', (req, res) => {
 	});
 });
 
-// @route   GET api/users/login
+// @route   GET users/login
 // @desc    Login user / Returning JWT Token
 // @access  Public
 router.post('/login', (req, res) => {
@@ -125,7 +125,7 @@ router.post('/login', (req, res) => {
 	});
 });
 
-// @route   GET api/users/current
+// @route   GET users/current
 // @desc    Return current user
 // @access  Private
 router.get(

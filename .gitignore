@@ -1,4 +1,4 @@
 /node_modules
 package-lock.json
 /config
-/devconnector/node_modules
+/client/node_modules
